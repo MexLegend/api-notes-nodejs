@@ -1,13 +1,17 @@
-import express from 'express';
+import express, { json } from 'express';
 import dotenv from 'dotenv';
 
 if (process.env.NODE_ENV?.includes('development')) dotenv.config();
 
 import { HTTP_PORT } from './config';
 import router from './routers/index.router';
+import errorController from './controllers/error/index.controller';
 
 const api = express();
+
+api.use(json());
 api.use('/api', router);
+api.use(errorController);
 
 const port = HTTP_PORT || 3001;
 
