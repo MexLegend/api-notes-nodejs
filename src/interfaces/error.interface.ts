@@ -6,8 +6,8 @@ export type ERROR_TYPE =
 	| 'INTERNAL_ERROR'
 	| 'BAD_REQUEST_ERROR';
 
-export interface IError {
-	readonly code: ERROR_TYPE;
+export interface IError<T = ERROR_TYPE> {
+	readonly code: T;
 	readonly httpStatus: number;
 	readonly message: string;
 }

@@ -1,10 +1,10 @@
 import { ERROR_TYPE, IError } from '../interfaces/error.interface';
 
-export class CustomError extends Error implements IError {
-	public code: ERROR_TYPE;
+export class CustomError<T> extends Error implements IError<T> {
+	public code: T;
 	public httpStatus: number;
 
-	constructor(message: string, code: ERROR_TYPE, httpStatus: number) {
+	constructor(message: string, code: T, httpStatus: number) {
 		super();
 		this.message = message;
 		this.code = code;
@@ -12,33 +12,33 @@ export class CustomError extends Error implements IError {
 	}
 }
 
-const conflictError = (msg: string, code: ERROR_TYPE = 'CONFLICT') => {
-	const err = new CustomError(msg, code, 409);
+const conflictError = <T = ERROR_TYPE>(msg: string, code: T) => {
+	const err = new CustomError(msg, code || 'CONFLICT', 409);
 	throw err;
 };
 
-const notFoundError = (msg: string, code: ERROR_TYPE = 'NOT_FOUND') => {
-	const err = new CustomError(msg, code, 404);
+const notFoundError = <T = ERROR_TYPE>(msg: string, code: T) => {
+	const err = new CustomError(msg, code || 'NOT_FOUND', 404);
 	throw err;
 };
 
-const notAuthorizedError = (msg: string, code: ERROR_TYPE = 'UNAUTHORIZED') => {
-	const err = new CustomError(msg, code, 401);
+const notAuthorizedError = <T = ERROR_TYPE>(msg: string, code: T) => {
+	const err = new CustomError(msg, code || 'UNAUTHORIZED', 401);
 	throw err;
 };
 
-const forbiddenError = (msg: string, code: ERROR_TYPE = 'FORBIDDEN') => {
-	const err = new CustomError(msg, code, 403);
+const forbiddenError = <T = ERROR_TYPE>(msg: string, code: T) => {
+	const err = new CustomError(msg, code || 'FORBIDDEN', 403);
 	throw err;
 };
 
-const internalServerError = (msg: string, code: ERROR_TYPE = 'INTERNAL_ERROR') => {
-	const err = new CustomError(msg, code, 500);
+const internalServerError = <T = ERROR_TYPE>(msg: string, code: T) => {
+	const err = new CustomError(msg, code || 'INTERNAL_ERROR', 500);
 	throw err;
 };
 
-const badRequestError = (msg: string, code: ERROR_TYPE = 'BAD_REQUEST_ERROR') => {
-	const err = new CustomError(msg, code, 400);
+const badRequestError = <T = ERROR_TYPE>(msg: string, code: T) => {
+	const err = new CustomError(msg, code || 'BAD_REQUEST_ERROR', 400);
 	throw err;
 };
 
