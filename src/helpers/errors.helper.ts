@@ -12,32 +12,32 @@ export class CustomError<T> extends Error implements IError<T> {
 	}
 }
 
-const conflictError = <T = ERROR_TYPE>(msg: string, code: T) => {
+const conflictError = <T = ERROR_TYPE>(msg: string, code?: T) => {
 	const err = new CustomError(msg, code || 'CONFLICT', 409);
 	throw err;
 };
 
-const notFoundError = <T = ERROR_TYPE>(msg: string, code: T) => {
+const notFoundError = <T = ERROR_TYPE>(msg: string, code?: T) => {
 	const err = new CustomError(msg, code || 'NOT_FOUND', 404);
 	throw err;
 };
 
-const notAuthorizedError = <T = ERROR_TYPE>(msg: string, code: T) => {
+const notAuthorizedError = <T = ERROR_TYPE>(msg: string, code?: T) => {
 	const err = new CustomError(msg, code || 'UNAUTHORIZED', 401);
 	throw err;
 };
 
-const forbiddenError = <T = ERROR_TYPE>(msg: string, code: T) => {
+const forbiddenError = <T = ERROR_TYPE>(msg: string, code?: T) => {
 	const err = new CustomError(msg, code || 'FORBIDDEN', 403);
 	throw err;
 };
 
-const internalServerError = <T = ERROR_TYPE>(msg: string, code: T) => {
+const internalServerError = <T = ERROR_TYPE>(msg: string, code?: T) => {
 	const err = new CustomError(msg, code || 'INTERNAL_ERROR', 500);
 	throw err;
 };
 
-const badRequestError = <T = ERROR_TYPE>(msg: string, code: T) => {
+const badRequestError = <T = ERROR_TYPE>(msg: string, code?: T) => {
 	const err = new CustomError(msg, code || 'BAD_REQUEST_ERROR', 400);
 	throw err;
 };

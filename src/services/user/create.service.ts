@@ -19,6 +19,7 @@ const main = async (user: ICreateUser) => {
 		}
 
 		// return response
+		return response.insertId;
 	} catch (error) {
 		internalServerError<USER_ERROR_TYPE>(error.message, 'CREATE_USER_ERROR');
 	}
